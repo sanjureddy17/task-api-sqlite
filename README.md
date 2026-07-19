@@ -103,6 +103,10 @@ Example:
 ![Swagger UI](swagger.png)
 
 ---
+## API Test Example
+
+GET /tasks executed successfully using Swagger UI.
+![GET Tasks](get-tasks.png)
 
 ## Author
 
