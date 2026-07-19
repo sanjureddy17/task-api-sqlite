@@ -2,7 +2,7 @@
 
 ## Description
 
-This is a simple CRUD API built using FastAPI. It allows users to create, read, update, and delete tasks. The project stores data in memory and provides interactive API documentation using Swagger UI.
+Task API is a simple CRUD (Create, Read, Update, Delete) application built using **FastAPI**. It allows users to create, view, update, and delete tasks. The project stores data in memory and provides interactive API documentation through Swagger UI.
 
 ---
 
@@ -24,7 +24,7 @@ This is a simple CRUD API built using FastAPI. It allows users to create, read, 
 git clone https://github.com/sanjureddy17/task-api.git
 ```
 
-### Move into the project
+### Move into the project folder
 
 ```bash
 cd task-api
@@ -52,7 +52,7 @@ http://127.0.0.1:8000
 
 ## Swagger Documentation
 
-Open:
+Open the following URL in your browser:
 
 ```
 http://127.0.0.1:8000/docs
@@ -64,12 +64,12 @@ http://127.0.0.1:8000/docs
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| GET | / | Home |
+| GET | / | Home endpoint |
 | GET | /health | Health Check |
 | GET | /tasks | Get all Tasks |
 | GET | /tasks/{task_id} | Get Task by ID |
-| POST | /tasks | Create a Task |
-| PUT | /tasks/{task_id} | Update a Task |
+| POST | /tasks | Create a New Task |
+| PUT | /tasks/{task_id} | Update an Existing Task |
 | DELETE | /tasks/{task_id} | Delete a Task |
 
 ---
@@ -80,7 +80,7 @@ http://127.0.0.1:8000/docs
 curl -X GET http://127.0.0.1:8000/tasks
 ```
 
-Example Response:
+### Example Response
 
 ```json
 [
@@ -94,20 +94,40 @@ Example Response:
 
 ---
 
-## Swagger Screenshot
+# Screenshots
 
-Add a screenshot of your Swagger UI here.
+## Swagger UI
 
-Example:
+The Swagger UI automatically documents all the API endpoints and allows interactive testing.
 
 ![Swagger UI](swagger.png)
 
 ---
-## API Test Example
 
-GET /tasks executed successfully using Swagger UI.
+## API Test Examples
+
+### GET /tasks
+
+The following screenshot shows the successful execution of the **GET /tasks** endpoint.
+
 ![GET Tasks](get-tasks.png)
+
+---
+
+### POST /tasks
+
+The following screenshots show the request used to create a new task and the successful response returned by the API.
+
+#### POST Request
+
+![POST Request](post-request.png)
+
+#### POST Response
+
+![POST Response](post-response.png)
+
+---
 
 ## Author
 
-Sanjana
+**Sanjana**
