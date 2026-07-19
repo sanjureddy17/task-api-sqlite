@@ -1,5 +1,5 @@
 from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 app = FastAPI()
 
@@ -22,11 +22,11 @@ tasks = [
 ]
 
 class TaskCreate(BaseModel):
-    title: str
+    title: str = Field(..., min_length=1)
 
 class TaskUpdate(BaseModel):
-        title: str
-        done: bool
+    title: str = Field(..., min_length=1)
+    done: bool
 
 @app.get("/")
 def home():
