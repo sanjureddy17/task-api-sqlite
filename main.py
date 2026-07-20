@@ -67,7 +67,9 @@ def health():
 
 @app.get("/tasks")
 def get_tasks():
-    return tasks
+    with get_session() as session:
+        tasks = session.exec(select(Task)).all()
+        return tasks
 
 @app.get("/tasks/{task_id}")
 def get_task(task_id: int):
@@ -83,13 +85,15 @@ def get_task(task_id: int):
 @app.post("/tasks", status_code=201)
 def create_task(task: TaskCreate):
 
-    new_task = {
-        "id": len(tasks) + 1,
-        "title": task.title,
-        "done": False
-    }
+    new_task = Task(
+        title=task.title,
+        done=False
+    )
 
-    tasks.append(new_task)
+    with get_session() as session:
+        session.add(new_task)
+        session.commit()
+        session.refresh(new_task)
 
     return new_task
 
