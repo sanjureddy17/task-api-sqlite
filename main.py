@@ -73,8 +73,10 @@ def get_tasks():
 
 @app.get("/tasks/{task_id}")
 def get_task(task_id: int):
-    for task in tasks:
-        if task["id"] == task_id:
+    with get_session() as session:
+        task = session.get(Task, task_id)
+
+        if task:
             return task
 
     raise HTTPException(
@@ -100,11 +102,18 @@ def create_task(task: TaskCreate):
 @app.put("/tasks/{task_id}")
 def update_task(task_id: int, task: TaskUpdate):
 
-    for t in tasks:
-        if t["id"] == task_id:
-            t["title"] = task.title
-            t["done"] = task.done
-            return t
+    with get_session() as session:
+        db_task = session.get(Task, task_id)
+
+        if db_task:
+            db_task.title = task.title
+            db_task.done = task.done
+
+            session.add(db_task)
+            session.commit()
+            session.refresh(db_task)
+
+            return db_task
 
     raise HTTPException(
         status_code=404,
@@ -113,9 +122,13 @@ def update_task(task_id: int, task: TaskUpdate):
 
 @app.delete("/tasks/{task_id}", status_code=204)
 def delete_task(task_id: int):
-    for i, task in enumerate(tasks):
-        if task["id"] == task_id:
-            tasks.pop(i)
+
+    with get_session() as session:
+        task = session.get(Task, task_id)
+
+        if task:
+            session.delete(task)
+            session.commit()
             return
 
     raise HTTPException(
