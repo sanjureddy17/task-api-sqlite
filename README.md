@@ -1,133 +1,44 @@
-# Task API
+# Task API - FastAPI + SQLite
 
-## Description
+A simple backend task management API built using FastAPI and SQLite.
 
-Task API is a simple CRUD (Create, Read, Update, Delete) application built using **FastAPI**. It allows users to create, view, update, and delete tasks. The project stores data in memory and provides interactive API documentation through Swagger UI.
+## Tech Stack
 
----
-
-## Technologies Used
-
-- Python 3
+- Python
 - FastAPI
+- SQLModel
+- SQLite
 - Uvicorn
-- Git
-- GitHub
 
----
+## Features
 
-## Installation
+- Create tasks
+- View all tasks
+- View task by ID
+- Update tasks
+- Delete tasks
+- SQLite database storage
 
-### Clone the repository
+## Run Project
 
-```bash
-git clone https://github.com/sanjureddy17/task-api.git
-```
+Install dependencies:
 
-### Move into the project folder
+pip install -r requirements.txt
 
-```bash
-cd task-api
-```
+Run server:
 
-### Install dependencies
+uvicorn main:app --reload
 
-```bash
-pip install fastapi uvicorn
-```
+API Documentation:
 
-### Run the application
-
-```bash
-python -m uvicorn main:app --reload
-```
-
-The server will start at:
-
-```
-http://127.0.0.1:8000
-```
-
----
-
-## Swagger Documentation
-
-Open the following URL in your browser:
-
-```
 http://127.0.0.1:8000/docs
-```
-
----
 
 ## API Endpoints
 
 | Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | / | Home endpoint |
-| GET | /health | Health Check |
-| GET | /tasks | Get all Tasks |
-| GET | /tasks/{task_id} | Get Task by ID |
-| POST | /tasks | Create a New Task |
-| PUT | /tasks/{task_id} | Update an Existing Task |
-| DELETE | /tasks/{task_id} | Delete a Task |
-
----
-
-## Sample cURL Command
-
-```bash
-curl -X GET http://127.0.0.1:8000/tasks
-```
-
-### Example Response
-
-```json
-[
-  {
-    "id": 1,
-    "title": "Study Python",
-    "done": false
-  }
-]
-```
-
----
-
-# Screenshots
-
-## Swagger UI
-
-The Swagger UI automatically documents all the API endpoints and allows interactive testing.
-
-![Swagger UI](swagger.png)
-
----
-
-## API Test Examples
-
-### GET /tasks
-
-The following screenshot shows the successful execution of the **GET /tasks** endpoint.
-
-![GET Tasks](get-tasks.png)
-
----
-
-### POST /tasks
-
-The following screenshots show the request used to create a new task and the successful response returned by the API.
-
-#### POST Request
-
-![POST Request](post-request.png)
-
-#### POST Response
-
-![POST Response](post-response.png)
-
----
-
-## Author
-
-**Sanjana**
+|---|---|---|
+| GET | /tasks | Get all tasks |
+| GET | /tasks/{id} | Get single task |
+| POST | /tasks | Create task |
+| PUT | /tasks/{id} | Update task |
+| DELETE | /tasks/{id} | Delete task |
