@@ -1,7 +1,30 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
+from contextlib import asynccontextmanager
+from database import create_db_and_tables, get_session
+from sqlmodel import select
+from models import Task
 
-app = FastAPI()
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    create_db_and_tables()
+
+    with get_session() as session:
+        existing_tasks = session.exec(select(Task)).first()
+
+        if existing_tasks is None:
+            sample_tasks = [
+                Task(title="Study Python", done=False),
+                Task(title="Complete Assignment", done=False),
+                Task(title="Go for Walk", done=True)
+            ]
+
+            session.add_all(sample_tasks)
+            session.commit()
+
+    yield
+
+app = FastAPI(lifespan=lifespan)
 
 tasks = [
     {
