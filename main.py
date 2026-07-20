@@ -26,24 +26,6 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(lifespan=lifespan)
 
-tasks = [
-    {
-        "id": 1,
-        "title": "Study Python",
-        "done": False
-    },
-    {
-        "id": 2,
-        "title": "Complete Assignment",
-        "done": False
-    },
-    {
-        "id": 3,
-        "title": "Go for Walk",
-        "done": True
-    }
-]
-
 class TaskCreate(BaseModel):
     title: str = Field(..., min_length=1)
 
