@@ -28,3 +28,17 @@ This project was developed as part of the Backend AI Engineering Internship assi
 
 ```bash
 pip install -r requirements.txt
+
+## Screenshots
+
+### Swagger API Documentation
+![Swagger](screenshots/swagger.png)
+
+### API Request
+![API Request](screenshots/api_request.png)
+
+### API Response
+![API Response](screenshots/api_response.png)
+
+### GitHub Repository
+![GitHub](screenshots/github.png)
